@@ -1,15 +1,29 @@
 /* Interface */
 #game {
-    border: 1px solid; 
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     font-family: 'Roboto', sans-serif;
 }
+#game h1 {
+    font-size: 60px;
+    margin-bottom: -5%;
+    text-align: center;
+}
 #game p {
     border: 1px solid #cecece;
-    padding: 30px 35%;
+    width: 60%;
+    height: 25px;
+    padding: 30px;
+    text-align: center;
+}
+#game #counter {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border: 0px;
+    margin: -5px 0 -15px 0;
 }
 #interface {
     display: flex;
@@ -67,4 +81,24 @@
     background-color: transparent;
     border: 0px;
     padding: 5px;
+}
+#interface #result {
+    font-weight: 700;
+}
+/* Footer */
+footer {
+    position: fixed;
+    color: #fff;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    background-color: #1F2937;
+    margin: -8px;
+    padding-top: 20px;
+    min-height: 50px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
 }

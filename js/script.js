@@ -41,6 +41,7 @@ function getPlayerChoice(callback) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    let matchCount = 0; // Variável para contar as partidas
     getPlayerChoice(function(choice) {
         // Defining results after playerChoice is set
         playerChoice = choice;
@@ -48,21 +49,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Playing game
         let message = playGame(playerChoice, pcResult);
-        console.log("PC plays: " + pcResult + " and you play: " + playerChoice + " so, the result is " + message);
+
+        // Update results
+        const resultElement = document.querySelector('#result');
+        
+        const boldText = document.createElement('strong');
+        boldText.textContent = "👤: " + playerChoice + " vs " + " 💻: " + pcResult + " ➞ ";
+        
+        resultElement.innerHTML = '';
+        resultElement.appendChild(boldText);
+        resultElement.appendChild(document.createTextNode(message));
+        
+        matchCount++; // Incrementar o contador de partidas
+
+        // Check for the end of five games
+        if (matchCount === 5) {
+            setTimeout(() => {
+                if (playerCount > pcCount) {
+                    alert('You win! Congrats!');
+                    location.reload();
+                } else {
+                    alert('You lose, try again!');
+                    location.reload();
+                }
+            }, 300); // Atraso de 1 segundo (1000 milissegundos)
+        }
     });
 });
 
-// Game scope
+
+let playerCount = 0,
+    pcCount = 0;
+
 function playGame(playerChoice, pcResult) {
     let message = "";
+
     if (playerChoice === pcResult) {
-        message = 'It is a draw!';
+        message = 'it is a draw!';
     } else if ((playerChoice === 'Rock' && pcResult === 'Scissors') ||
                (playerChoice === 'Paper' && pcResult === 'Rock') ||
                (playerChoice === 'Scissors' && pcResult === 'Paper')) {
         message = 'You win!';
+        playerCount += 1;
+        pcCount -= 1;
     } else {
         message = 'You lose!';
+        playerCount -= 1;
+        pcCount += 1;
     }
+
+    console.log(playerCount + " " + pcCount);
     return message;
 }
+
