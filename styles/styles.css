@@ -1,3 +1,12 @@
+/* Links */
+a {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 5px;
+}
+a:hover {
+    text-decoration: underline;
+}
 /* Interface */
 #game {
     display: flex;
